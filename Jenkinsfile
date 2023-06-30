@@ -6,7 +6,7 @@ pipeline {
 	version = "2"
 	PORT = "9000"
 	}
-	stage {
+	stages {
 	stage('build') {
 		steps {
 			sh 'sudo chmod +x build.sh scripts/*.sh'
@@ -33,7 +33,7 @@ pipeline {
 	post {
 		always {
 			sh './scripts/cleanup.sh'
-			cleanWs
+			cleanWs()
 		}
 	}
 }
