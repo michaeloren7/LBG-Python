@@ -6,17 +6,17 @@ metadata:
     app:
 spec:
   replicas: 2
-    template:
-      metadata:
-        labels:
-          app: lbg-python
+  selector:
+    matchLabels:
+      app: lbg-python
   strategy:
     rollingUpdate:
       maxUnavailable: 50%
       maxSurge: 50%
-  selector:
-    matchLabels:
-      app: lbg-python
+  template:
+    metadata:
+      labels:
+        app: lbg-python
     spec:
       containers:
       - name: lbg-python
