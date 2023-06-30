@@ -3,7 +3,7 @@ pipeline {
 
     environment {
 	version = "0"
-	PORT = "9000"
+	PORT = "5000"
     }
     stages {
         stage('build and run container') {
