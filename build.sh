@@ -16,4 +16,4 @@ else
 	sleep 1
 fi
 docker build -t eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version} .
-docker run -d -p 80:${PORT} -e PORT=${PORT} --name eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version}
+docker run -d -p 80:${PORT} -e PORT=${PORT} --name LBG-Python eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version}
