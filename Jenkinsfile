@@ -2,14 +2,40 @@ pipeline {
     agent any
 
     environment {
-	version = "0"
+	old_version = "1"
+	version = "2"
 	PORT = "9000"
     }
+stages {
+	stage('build') {
+		steps {
+			sh 'sudo chmod +x build.sh scripts/*.sh'
+			sh './build.sh
+		}
+	}
     stages {
-        stage('build and run container') {
+        stage('run unit tests') {
             steps {
-                sh 'bash < build.sh'
+                sh '''
+                python3 -m venv venv
+		sudo chmod +x venv/bin/activate
+		./venv/bin/activate
+		pip3 install -r requirements.txt
+		python3 lbg.test.py
+		'''
             }
         }
+	stage('push image') {
+		steps {
+			sh 'docker push eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version}'
+		}
+	}
     }
+	post {
+		always {
+			sh './scripts/cleanup.sh'
+			cleanWs
+		}
+	}
 }
+

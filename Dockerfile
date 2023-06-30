@@ -9,4 +9,4 @@ ENV PORT=8080
 # Expose the correct port
 
 # Create an entrypoint
-ENTRYPOINT "python3", "lbg.py" --PORT ${PORT}
+ENTRYPOINT ["python3", "lbg.py"]

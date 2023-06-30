@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lbg-python
+  labels:
+    app:
+spec:
+  replicas: 2
+    template:
+      metadata:
+        labels:
+          app: lbg-python
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+  selector:
+    matchLabels:
+      app: lbg-python
+    spec:
+      containers:
+      - name: lbg-python
+        image: eu.gcr.io/lbg-mea-12/lbg-python:mo_v1
+        ports:
+        - containerPort: 9000
+        env:
+          - name: PORT
+            value: "9000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lbg-python
+spec:
+  selector:
+    app: lbg-python
+  ports: 
+  - protocol: TCP
+    port: 80
+    targetPort: 9000
+  type: LoadBalancer
