@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if docker logs lbg-sample > /dev/null; then
+if docker logs LBG-Python > /dev/null; then
 	if docker exec lbg-sample ls > /dev/null; then
-		docker stop lbg-sample
+		docker stop LBG-Python
 	else
 		sleep 1
 	fi
-	docker rm lbg-sample
+	docker rm LBG-Python
 else
 	sleep 1
 fi
@@ -16,8 +16,4 @@ else
 	sleep 1
 fi
 docker build -t eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version} .
-<<<<<<< HEAD
-docker run -d -p 80:${PORT} -e PORT=${PORT} --name eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version}
-=======
 docker run -d -p 80:${PORT} -e PORT=${PORT} --name LBG-Python eu.gcr.io/lbg-mea-12/lbg-python:mo_v${version}
->>>>>>> d3ff5694143f89a146bd0ea486ef847d684b2c5c
