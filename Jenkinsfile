@@ -37,8 +37,8 @@ pipeline {
 	}
 	post {
 		always {
-			sh 'cleanup.sh'
-			cleanWs()
+			#sh 'cleanup.sh'
+			#cleanWs()
 		}
 	}
 }
