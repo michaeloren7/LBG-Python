@@ -35,10 +35,10 @@ pipeline {
 			}
 		}
 	}
-	#post {
-		#always {
-			#sh 'cleanup.sh'
-			#cleanWs()
-		#}
-	#}
+	post {
+		always {
+			sh 'cleanup.sh'
+			cleanWs()
+		}
+	}
 }
