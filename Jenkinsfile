@@ -10,7 +10,7 @@ pipeline {
 		stage('build') {
 			steps {
 				sh 'sudo chmod +x build.sh scripts/*.sh'
-				sh './build.sh
+				sh './build.sh'
 			}
 		}
         	stage('run unit tests') {
